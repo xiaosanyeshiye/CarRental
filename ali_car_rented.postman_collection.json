@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "40f44bc1-9d76-458a-9104-bd053fc03425",
+		"name": "ali_car_rented",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "queryCarList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"carName\": \"\", \"pageIndex\": 1, \"pageSize\": 10}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:8099/car/list",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8099",
+					"path": [
+						"car",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rentCar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "TOKEN",
+						"value": "ce6126fc-7c32-473c-8ea5-968eafb58e28",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:8099/car/rent",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8099",
+					"path": [
+						"car",
+						"rent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "returnCar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "TOKEN",
+						"value": "ce6126fc-7c32-473c-8ea5-968eafb58e28",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:8099/car/return",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8099",
+					"path": [
+						"car",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loginAccount\": \"luw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:8099/customer/login",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8099",
+					"path": [
+						"customer",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"yyy\",\r\n    \"loginAccount\": \"yyy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:8099/customer/createCustomer",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8099",
+					"path": [
+						"customer",
+						"createCustomer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": ""
+		}
+	]
+}
