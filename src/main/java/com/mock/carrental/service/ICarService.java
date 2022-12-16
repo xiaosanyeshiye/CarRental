@@ -11,7 +11,7 @@ public interface ICarService {
 
     PageList<CarDto> listCars(PageCarQuery carQuery);
 
-    void rentCar(RentCarCommand command);
+    CarDto rentCar(RentCarCommand command);
 
-    void returnCar(RentCarCommand command);
+    CarDto returnCar(RentCarCommand command);
 }

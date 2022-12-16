@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mock.carrental.common.base.BasePage;
 import com.mock.carrental.common.base.PageList;
+import com.mock.carrental.common.context.UserContext;
 import com.mock.carrental.dao.CarDao;
 import com.mock.carrental.dao.entity.CarEntity;
 import com.mock.carrental.enums.CarStatusEnum;
@@ -65,7 +66,7 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public void rentCar(RentCarCommand command) {
+    public CarDto rentCar(RentCarCommand command) {
         CarDto carDto = this.getCar(command.getCarId());
         if (!CarStatusEnum.canRent(carDto.getCarStatus())) {
             log.error("Car not free.");
@@ -81,11 +82,13 @@ public class CarServiceImpl implements ICarService {
         carEntity.setLastRentedTime(new Date());
         carEntity.setCarStatus(CarStatusEnum.RENTED);
         carDao.updateById(carEntity);
+
+        return CarDto.convertFromEntity(carEntity);
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public void returnCar(RentCarCommand command) {
+    public CarDto returnCar(RentCarCommand command) {
         CarDto carDto = this.getCar(command.getCarId());
         if (!CarStatusEnum.canReturn(carDto.getCarStatus())) {
             log.error("Car not rented.");
@@ -98,5 +101,7 @@ public class CarServiceImpl implements ICarService {
 
         RentedRecordUpdateCommand updateCommand = new RentedRecordUpdateCommand(carDto.getRentedRecordId());
         rentedRecordService.updateReturnRecord(updateCommand);
+
+        return CarDto.convertFromEntity(carEntity);
     }
 }
