@@ -1,0 +1,29 @@
+server:
+  address:
+  port: 8099
+spring:
+  application:
+    name: rental
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.108.81.58:3306/rental?useSSL=false&useUnicode=true&characterEncoding=utf-8&connectionCollation=utf8mb4_unicode_ci&allowPublicKeyRetrieval=true
+    hikari:
+      minimum-idle: 8
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    org:
+      apache:
+        http:
+          headers: INFO
+          wire: ERROR
+      springframework:
+        web: INFO
